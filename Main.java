@@ -34,7 +34,7 @@ class Main {
 				System.out.println("Enter personID: ");
 				int personID = myScanner.nextInt();
 				DB.readPerson(personID);
-				System.out.println(personID);
+				System.out.println("..." + personID);
 				
 		      }
 		      

@@ -5,22 +5,21 @@ import java.sql.Statement;
 
 public class PersonDBManager {
 	
-	   private String url = "*";
-	   private String userName = "*";
-	   private String password = "*";
-	   
-	   public PersonDBManager(String url,String userName, String password) {
-		   
-		   this.url = url;
-		   this.userName = userName;
-		   this.password = password;
+	private String url = "*";
+	private String userName = "*";
+	private String password = "*";
+	
+	public PersonDBManager(String url,String userName, String password) {
+		
+		this.url = url;
+		this.userName = userName;
+		this.password = password;
 		   
 	   }
-	   
-	   public void writePerson(Person p) {
-		   
-		   try(Connection conn = DriverManager.getConnection(this.url, this.userName, this.password);
-				   Statement stmt = conn.createStatement();
+	
+	public void writePerson(Person p) {
+		try(Connection conn = DriverManager.getConnection(this.url, this.userName, this.password);
+		    Statement stmt = conn.createStatement();
 					     ) {		      
 					         ////////////// Insert into table
 					   String sql_command = "INSERT INTO Person(PersonID, Name, Surname, Age, Gender) VALUES(" 

@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MenageTable {
+public class CreateTable {
    static final String url = "*";
    static final String userName = "*";
    static final String password = "*";
@@ -14,8 +14,8 @@ public class MenageTable {
          Statement stmt = conn.createStatement();
       ) {		      
           ////////////// CREATE TABLE ORDERS
-          String create_table_instruction = "CREATE TABLE IF NOT EXISTS Person" +
-              "(PersonID INT NOT NULL, " +
+          String create_table_instruction = "CREATE TABLE IF NOT EXISTS nametable " +
+              "(PersonID int AUTO_INCREMENT, " +
               " Name VARCHAR(255), " +
               " Surname VARCHAR(255), " +
               " Age INTEGER, " +

@@ -103,18 +103,5 @@ public class ChickenStoreManager {
 				}
 			}
 		}
-		
-		public void readOrder(int OrderID )  {
-			try(Connection conn = DriverManager.getConnection(this.url, this.userName, this.password);
-			    Statement stmt = conn.createStatement();
-			   ) {
-				String sql_command = "SELECT * FROM Person WHERE OrderID =" + OrderID + ";";
-				stmt.executeQuery(sql_command);
-				System.out.println("Select " + OrderID + " user.");
-			}
-			
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+	
 	}

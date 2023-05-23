@@ -8,8 +8,7 @@ public class ChickenOrder {
 		this.chicken = chicken;
 		this.fries = fries;
 		this.drinks = drinks;
-		
-	}
+		}
 	
 	@Override
 	public String toString () {

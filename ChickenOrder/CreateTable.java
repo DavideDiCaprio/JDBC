@@ -12,8 +12,8 @@ public class CreateTable {
 	public static void main(String[] args) {
 		// Open a connection
 		try(Connection conn = DriverManager.getConnection(url, userName, password);
-		    Statement stmt = conn.createStatement();
-		   ) {
+		    Statement stmt = conn.createStatement();)
+		{
 			String create_table_instruction = "CREATE TABLE IF NOT EXISTS Orders" +
 				"(OrderID int AUTO_INCREMENT, " +
 				" Chicken int," +

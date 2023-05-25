@@ -21,7 +21,7 @@ public class PharmacyManager {
 				String sql_command = "SELECT price,amount From products WHERE ID = " + IDList.get(i) + ";";
 				ResultSet rs = stmt.executeQuery(sql_command);
 				
-				if (rs.next()) {
+				while (rs.next()) {
 					if (rs.wasNull()) {
 						System.out.println("Result set is null");
 					} else {

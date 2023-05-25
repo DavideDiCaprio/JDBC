@@ -57,21 +57,16 @@ public class PharmacyManager {
 		          System.out.println("Format: " + rs.getString("Format"));
 		          System.out.println("Price: " + rs.getFloat("Price"));
 		          System.out.println("Amount: " + rs.getInt("Amount"));
-		   }
-	    }
-   }
+			}
+		}
+	}
 	
-	
-	// metodo refill storage che dato un id e un amount aumenta l’amount 
-	// corrispondente a quell’id dell’amount preso come input	
-
-    public void refill(int ID, int refillAmount) throws SQLException {
+	public void refill(int ID, int refillAmount) throws SQLException {
     	
     	System.out.println("ID = " + ID + "amount =" + refillAmount);
 		
 		try(Connection conn = DriverManager.getConnection(url, userName, password);
 				Statement stmt = conn.createStatement();)
-		
 		{
 			String sql_command = "SELECT Amount FROM Products WHERE ID = " + ID +";";
 			ResultSet rs = stmt.executeQuery(sql_command);
@@ -150,8 +145,4 @@ public class PharmacyManager {
 			refill(inputID, refilAmount);
 		}  	
 	}
-}
-
-
-
-			
+}		

@@ -8,31 +8,26 @@ import java.util.ArrayList;
 
 public class PharmacyManager {
 	
-	private String url = "jdbc:mysql://localhost:3306/PharmacyManager";
-	private String userName = "root";
-	private String password = "gatesss";
+	private String url = "jdbc:mysql://localhost:3306/";
+	private String userName = "";
+	private String password = "";
 	
-	//
 	public void makePurchase(ArrayList<Integer> IDList, ArrayList<Integer> AmountList) {
 		
 		for (int i = 0; i < IDList.size(); i++) {
-			
 			try(Connection conn = DriverManager.getConnection(url, userName, password);
-					Statement stmt = conn.createStatement();) 
+			    Statement stmt = conn.createStatement();) 
 			{
 				String sql_command = "SELECT price,amount From products WHERE ID = " + IDList.get(i) + ";";
-				
 				ResultSet rs = stmt.executeQuery(sql_command);
 				
 				if (rs.next()) {
-	
 					if (rs.wasNull()) {
 						System.out.println("Result set is null");
 					} else {
 						int price = rs.getInt("price");
 						int amount = rs.getInt("amount");
 						int newAmount = amount - AmountList.get(i);
-						
 						
 						String sql_update = "UPDATE products SET amount =" + newAmount + "WHERE ID =" + IDList.get(i) + ";";
 						stmt.executeUpdate(sql_update);
@@ -47,14 +42,12 @@ public class PharmacyManager {
 		}
 	}
 	
-	//metodo checkProduct che dato l’id ti ritorna tutta la riga del db
-	
 	public void checkProduct(int ID) throws SQLException {
 		
 		try(Connection conn = DriverManager.getConnection(url, userName, password);
 				Statement stmt = conn.createStatement();) 
 		{
-			String sql_command = "SELECT * From products WHERE ID = " + ID +";";
+			String sql_command = "SELECT * From products WHERE ID= " + ID +";" ;
 			
 			ResultSet rs = stmt.executeQuery(sql_command);
 					
@@ -141,7 +134,6 @@ public class PharmacyManager {
 				}
 			}
 			
-			
 	    } else if (op.equals("check")) {
 	    	System.out.println("enter ID: ");
 			int inputID = myScanner.nextInt();
@@ -156,9 +148,7 @@ public class PharmacyManager {
 			int refilAmount = myScanner.nextInt();
 			
 			refill(inputID, refilAmount);
-	    		    	
-	    }
-	    	
+		}  	
 	}
 }
 

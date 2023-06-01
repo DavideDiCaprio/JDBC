@@ -3,13 +3,12 @@ import java.util.Scanner;
 class Main {
 	
 	public static void main(String[] args) {
-		
 		PersonDBManager DB = new PersonDBManager("*","*","*");
 		
 		while (true) {
 			Scanner myScanner = new Scanner(System.in);
-			System.out.println("Enter operation: ");		
-	        String op = myScanner.nextLine();
+			System.out.println("Enter operation: ");
+			String op = myScanner.nextLine();
 			
 			if (op.equals("write")) {
 				

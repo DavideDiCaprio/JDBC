@@ -7,25 +7,24 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class PharmacyManager {
-	
 	private String url = "jdbc:mysql://localhost:3306/";
 	private String userName = "";
 	private String password = "";
-	
+
 	@SuppressWarnings("null")
 	public float makePurchase(ArrayList<Integer> IDList, ArrayList<Integer> AmountList) {
-				
+		
 		Float bill = 0.0f;
 		String productName = null;
 		Float price = 0.0f;
 		int amount = 0;
 		
 		for (int i = 0; i < IDList.size(); i++) {
-						
+				
 			ResultSet rs = null;
 			
 			try(Connection conn = DriverManager.getConnection(url, userName, password);
-					Statement stmt = conn.createStatement();)
+			    Statement stmt = conn.createStatement();)
 			{
 				String sql_command = "SELECT name,price, amount FROM products WHERE ID = " + IDList.get(i) +";";
 				stmt.executeQuery(sql_command);
@@ -33,8 +32,8 @@ public class PharmacyManager {
 
 				if (!rs.isBeforeFirst()){
 					System.out.println("The following ID: " + IDList.get(i) + " can not be found in the database.");
-				    System.out.println("");
-				    return (Float) null;
+					System.out.println("");
+					return (Float) null;
 				}
 
 				while (rs.next()) {
@@ -44,24 +43,17 @@ public class PharmacyManager {
 				}
 				
 			} catch (SQLException e) {
-				// 
-				System.out.println("ECCEZIONE CATTURATA DAL TRY");
 				e.printStackTrace();
 				return (Float) null;
-				
 			}
 
 			if (AmountList.get(i) <= 0) {
 				System.out.println("Amount must be greater than 0. " +  AmountList.get(i) + " not usable.");
 				return (Float) null;
 			}
-			
-			bill = price * AmountList.get(i);
-			
+		
 			System.out.println("You selected product: " + productName);
-			System.out.println("Total spent: " + bill);
 			System.out.println("");
-			
 
 			if (amount <= AmountList.get(i)) {
 				System.out.println("Amount not available.");
@@ -69,14 +61,17 @@ public class PharmacyManager {
 				System.out.println(productName + "is no longer available. Max amount: " + amount + ".");		
 				return (Float) null;
 			}
+			
+			bill = price * AmountList.get(i);
+			System.out.println("Total spent: " + bill);
+			System.out.println("");
 
 			int newAmount = amount - AmountList.get(i);
-			String sql_command1 = "UPDATE products SET amount = " + newAmount + " WHERE ID =" + IDList.get(i) + ";";
-			
+			String sqlUpdate = "UPDATE products SET amount = " + newAmount + " WHERE ID =" + IDList.get(i) + ";";
 			
 			try (Connection conn = DriverManager.getConnection(url, userName, password);
 				Statement stmt = conn.createStatement();) {
-				stmt.executeUpdate(sql_command1);
+				stmt.executeUpdate(sqlUpdate);
 			
 			}
 

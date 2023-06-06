@@ -73,9 +73,9 @@ class PharmacyManagerTest {
 		createProductTable();
 		
 		PharmacyManager testPharmacy = new PharmacyManager();
-		insertProduct();
+		insertProduct("aspirin","pills",7.99f,50);
 		
-		Product DBProductTest = new Product();
+		Product DBProductTest = new Product("aspirin","pills",7.99f,50);
 		assertEquals(DBProductTest, testPharmacy.checkProduct(1));
 		
 		dropProdcutTable();
@@ -87,11 +87,9 @@ class PharmacyManagerTest {
 		
 		createProductTable();
 		PharmacyManager testPharmacy = new PharmacyManager();
-		insertProduct();
+		insertProduct("painkiller","powder suppositary",5.50f,20);
 		
-		// + 2 amount
-		Product ProductTestRefill = new Product();
-		
+		Product ProductTestRefill = new Product("painkiller","powder suppositary",5.50f,22);
 		assertEquals(ProductTestRefill, testPharmacy.refill(1,2)); 
 		
 		dropProdcutTable();
@@ -102,7 +100,7 @@ class PharmacyManagerTest {
 		
 		createProductTable();
 		PharmacyManager testPharmacy = new PharmacyManager();
-		insertProduct("","",.00f,);
+		insertProduct("antihistamine","pills",8.00f,90);
 		
 		ArrayList<Integer> IDArray = new ArrayList<Integer>();
 		IDArray.add(1);
@@ -110,9 +108,9 @@ class PharmacyManagerTest {
 		AmountArray.add(2);
 		
 		
-		Product ProductTestMakePurchase = new Product(,"","",.0f,);
+		Product ProductTestMakePurchase = new Product("antihistamine","pills",8.00f,90);
 
-		assertEquals(00.00f, testPharmacy.makePurchase(IDArray, AmountArray));
+		assertEquals(16.00f, testPharmacy.makePurchase(IDArray, AmountArray));
 		assertEquals(ProductTestMakePurchase, testPharmacy.checkProduct(1));				
 		
 		dropProdcutTable();
